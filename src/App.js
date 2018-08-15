@@ -8,6 +8,14 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Login from './login.js';
+import axios from 'axios';
+axios.defaults.baseURL='http://47.96.21.88:8086/';
+// 响应拦截器
+axios.interceptors.response.use(function(response){
+  return response.data
+},function(error){
+  return Promise.reject(error)
+});
 
 class App extends Component {
   render() {
