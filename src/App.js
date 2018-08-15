@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Login from './login.js';
+import Main from './modules/main.js'
 import axios from 'axios';
 axios.defaults.baseURL='http://47.96.21.88:8086/';
 // 响应拦截器
@@ -27,7 +28,7 @@ return (
       <Router>
         <Switch>
           <Route exact path="/" exact component={Login} />
-          <Route path="/home" component={Home} />
+          <Route path="/home" component={Main} />
           <Route path="/show" component={Show} />
           <Redirect to="/" />
       </Switch>
@@ -37,9 +38,9 @@ return (
   }
 }
 // 如果逻辑复杂就单独抽取出来写  先简单输出以下页面内容
-const Home = () => {
-  return <div>Home</div>
-}
+// const Home = () => {
+//   return <div>Home</div>
+// }
 const Show = () => {
   return <div>Show</div>
 }
