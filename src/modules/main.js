@@ -9,7 +9,6 @@ import Chat from './chat/chat.js';
 import Info from './info/info.js';
 import My from './my/my.js';
 
-
 class Menu extends React.Component {
   render(){
     const {to, current, menuName, iconName} = this.props;

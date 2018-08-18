@@ -11,6 +11,18 @@ import Login from './login.js';
 import Main from './modules/main.js'
 import axios from 'axios';
 axios.defaults.baseURL='http://47.96.21.88:8086/';
+// axios.defaults.baseURL='http://127.0.0.1:8086/';
+// 请求拦截器
+axios.interceptors.request.use(function (config) {
+    if(!config.url.endsWith('/login')){
+      // 登录的地址不需要添加token请求头
+      config.headers.Authorization = localStorage.getItem('mytoken');
+    }
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
 // 响应拦截器
 axios.interceptors.response.use(function(response){
   return response.data
@@ -27,7 +39,7 @@ return (
         // 打开界面显示的页面，什么都不选择是/登录页面 这些页面是用户滑屏是可进入的页面
       <Router>
         <Switch>
-          <Route exact path="/" exact component={Login} />
+          <Route exact path="/" component={Login} />
           <Route path="/home" component={Main} />
           <Route path="/show" component={Show} />
           <Redirect to="/" />
